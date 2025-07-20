@@ -1,0 +1,597 @@
+/* ===================================================================
+   MARINE WEATHER FORECAST - REFERENCE DESIGN IMPLEMENTATION
+   Matching the provided reference image layout
+   =================================================================== */
+
+/* === LOCATION & COORDINATES SECTION === */
+.location-coordinates-section {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 20px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 2);
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.input-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #64748b;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.location-search-field {
+    -fx-background-color: white;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-prompt-text-fill: #9ca3af;
+    -fx-pref-width: 300px;
+}
+
+.location-search-field:focused {
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 2px;
+}
+
+.coordinate-field {
+    -fx-background-color: white;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-pref-width: 100px;
+    -fx-text-fill: #374151;
+}
+
+.coordinate-field:focused {
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 2px;
+}
+
+.fishing-area-btn {
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: #374151;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.fishing-area-btn:hover {
+    -fx-background-color: #e5e7eb;
+    -fx-border-color: #9ca3af;
+}
+
+/* === WEATHER OVERVIEW CARDS === */
+.weather-overview-cards {
+    -fx-spacing: 20px;
+    -fx-padding: 20px 0 0 0;
+}
+
+.weather-overview-card {
+    -fx-background-color: white;
+    -fx-padding: 24px;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 12, 0, 0, 6);
+    -fx-cursor: hand;
+    -fx-min-height: 140px;
+    -fx-pref-height: 140px;
+}
+
+.weather-overview-card:hover {
+    -fx-translate-y: -4px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 16, 0, 0, 8);
+}
+
+/* === CARD SPECIFIC GRADIENTS === */
+.current-conditions {
+    -fx-background-color: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 50%, #3b82f6 100%);
+}
+
+.wave-conditions {
+    -fx-background-color: linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #3b82f6 100%);
+}
+
+.wind-conditions {
+    -fx-background-color: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+}
+
+.safety-status {
+    -fx-background-color: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+}
+
+/* === CARD CONTENT STYLING === */
+.weather-card-icon {
+    -fx-font-size: 28px;
+}
+
+.weather-card-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.weather-card-location {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.weather-card-main-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.weather-card-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.weather-card-value {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+/* === DETAILED WEATHER SECTION === */
+.weather-details-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.weather-details-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.weather-details-container {
+    -fx-background-color: transparent;
+}
+
+/* === LEGACY WEATHER CARD STYLING === */
+.weather-card {
+    -fx-background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-padding: 16px;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0, 0, 4);
+    -fx-min-width: 180px;
+}
+
+.weather-card:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
+}
+
+/* === CHART STYLING === */
+.chart {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 8, 0, 0, 4);
+    -fx-padding: 20px;
+}
+
+.chart-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.chart-plot-background {
+    -fx-background-color: #fafbfc;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #e5e7eb;
+    -fx-stroke-width: 1px;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #e5e7eb;
+    -fx-stroke-width: 1px;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 3px;
+}
+
+/* Chart line colors */
+.default-color0.chart-series-line {
+    -fx-stroke: #3b82f6;
+}
+
+.default-color1.chart-series-line {
+    -fx-stroke: #10b981;
+}
+/*
+ === CURRENT WEATHER CARD === */
+.current-weather-card {
+    -fx-background-color: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    -fx-padding: 25px;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 12, 0, 0, 6);
+    -fx-min-width: 400px;
+}
+
+.weather-card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.weather-card-location {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.current-temp {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.current-condition {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.metric-icon {
+    -fx-font-size: 24px;
+}
+
+.metric-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(255, 255, 255, 0.8);
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.metric-value {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+/* === SAFETY STATUS CARD === */
+.safety-status-card {
+    -fx-background-color: white;
+    -fx-padding: 25px;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0, 0, 4);
+    -fx-min-width: 300px;
+}
+
+.safety-icon {
+    -fx-font-size: 24px;
+}
+
+.safety-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-status {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #059669;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-metric-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6b7280;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-metric-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-metric-value.good {
+    -fx-text-fill: #059669;
+}
+
+.safety-metric-value.safe {
+    -fx-text-fill: #059669;
+}
+
+.safety-metric-value.excellent {
+    -fx-text-fill: #059669;
+}
+
+.safety-recommendation {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6b7280;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-background-color: #f3f4f6;
+    -fx-padding: 12px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
+/* === BOTTOM METRICS ROW === */
+.bottom-metrics-row {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 2);
+}
+
+.bottom-metric-card {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 20px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-min-width: 140px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.03), 2, 0, 0, 1);
+}
+
+.bottom-metric-icon {
+    -fx-font-size: 28px;
+}
+
+.bottom-metric-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #6b7280;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.bottom-metric-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f2937;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.bottom-metric-detail {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9ca3af;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+/* === CURRENT WEATHER CARD FIXES === */
+.current-weather-card {
+    -fx-background-color: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    -fx-padding: 25px;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 12, 0, 0, 6);
+    -fx-min-width: 400px;
+}
+
+.current-weather-card .weather-card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.current-weather-card .weather-card-location {
+    -fx-font-size: 14px;
+    -fx-text-fill: white !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.current-weather-card .current-temp {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.current-weather-card .current-condition {
+    -fx-font-size: 14px;
+    -fx-text-fill: white !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.current-weather-card .metric-icon {
+    -fx-font-size: 24px;
+    -fx-text-fill: white !important;
+}
+
+.current-weather-card .metric-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: white !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.current-weather-card .metric-value {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+/* === SAFETY STATUS CARD FIXES === */
+.safety-status-card {
+    -fx-background-color: white;
+    -fx-padding: 25px;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0, 0, 4);
+    -fx-min-width: 300px;
+}
+
+.safety-status-card .safety-icon {
+    -fx-font-size: 24px;
+    -fx-text-fill: #059669 !important;
+}
+
+.safety-status-card .safety-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151 !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-status-card .safety-status {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #059669 !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-status-card .safety-metric-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6b7280 !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-status-card .safety-metric-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.safety-status-card .safety-metric-value.good {
+    -fx-text-fill: #059669 !important;
+}
+
+.safety-status-card .safety-metric-value.safe {
+    -fx-text-fill: #059669 !important;
+}
+
+.safety-status-card .safety-metric-value.excellent {
+    -fx-text-fill: #059669 !important;
+}
+
+.safety-status-card .safety-recommendation {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6b7280 !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-background-color: #f3f4f6;
+    -fx-padding: 12px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
+/* === BOTTOM METRICS ROW FIXES === */
+.bottom-metrics-row {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 2);
+}
+
+.bottom-metric-card {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 20px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-min-width: 140px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.03), 2, 0, 0, 1);
+}
+
+.bottom-metric-card .bottom-metric-icon {
+    -fx-font-size: 28px;
+    -fx-text-fill: #374151 !important;
+}
+
+.bottom-metric-card .bottom-metric-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #6b7280 !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.bottom-metric-card .bottom-metric-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f2937 !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+.bottom-metric-card .bottom-metric-detail {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9ca3af !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}
+
+/* === SCROLLING AND LAYOUT FIXES === */
+.weather-page-container {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 20px;
+}
+
+.weather-page-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: false;
+}
+
+.weather-page-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.weather-page-content {
+    -fx-background-color: transparent;
+    -fx-spacing: 20px;
+    -fx-padding: 0 0 50px 0;
+}
+
+/* === CHART CONTAINER FIXES === */
+.chart-container {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 8, 0, 0, 4);
+    -fx-min-height: 300px;
+}
+
+.chart {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.chart-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b !important;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+}

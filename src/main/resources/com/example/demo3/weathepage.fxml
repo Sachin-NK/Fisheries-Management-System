@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo3.WeatherController"
+            stylesheets="@wheather.css">
+
+    <ScrollPane fitToWidth="true" fitToHeight="false" 
+                hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                styleClass="weather-page-scroll"
+                AnchorPane.topAnchor="0"
+                AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0"
+                AnchorPane.bottomAnchor="0">
+        
+        <VBox spacing="20" styleClass="weather-page-content">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+        <!-- Location & Coordinates Section -->
+        <VBox styleClass="location-coordinates-section" spacing="15">
+            <Label text="Location &amp; Coordinates" styleClass="section-title"/>
+            
+            <!-- Search and Coordinates Row -->
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <!-- Search Location -->
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Search Location" styleClass="input-label"/>
+                    <TextField fx:id="searchLocationField" promptText="Enter city, fishing area, or harbor..." styleClass="location-search-field"/>
+                </VBox>
+                
+                <!-- Latitude -->
+                <VBox spacing="8">
+                    <Label text="Latitude" styleClass="input-label"/>
+                    <TextField fx:id="latitudeField" text="6.05" styleClass="coordinate-field"/>
+                </VBox>
+                
+                <!-- Longitude -->
+                <VBox spacing="8">
+                    <Label text="Longitude" styleClass="input-label"/>
+                    <TextField fx:id="longitudeField" text="80.21" styleClass="coordinate-field"/>
+                </VBox>
+            </HBox>
+            
+            <!-- Popular Fishing Areas -->
+            <VBox spacing="8">
+                <Label text="Popular Fishing Areas" styleClass="input-label"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Negombo" styleClass="fishing-area-btn" onAction="#selectFishingArea"/>
+                    <Button text="Chilaw" styleClass="fishing-area-btn" onAction="#selectFishingArea"/>
+                    <Button text="Trincomalee" styleClass="fishing-area-btn" onAction="#selectFishingArea"/>
+                    <Button text="Galle" styleClass="fishing-area-btn" onAction="#selectFishingArea"/>
+                    <Button text="Mirissa" styleClass="fishing-area-btn" onAction="#selectFishingArea"/>
+                    <Button text="Kalpitiya" styleClass="fishing-area-btn" onAction="#selectFishingArea"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- Current Weather and Safety Section -->
+        <HBox spacing="20" alignment="TOP_LEFT">
+            
+            <!-- Current Weather Card -->
+            <VBox styleClass="current-weather-card" spacing="15" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <VBox spacing="5">
+                        <Label text="Current Weather" styleClass="weather-card-title"/>
+                        <Label text="Negombo, Sri Lanka" styleClass="weather-card-location"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <VBox alignment="CENTER_RIGHT" spacing="2">
+                        <Label fx:id="currentTempLabel" text="28°C" styleClass="current-temp"/>
+                        <Label fx:id="currentConditionLabel" text="Partly Cloudy" styleClass="current-condition"/>
+                    </VBox>
+                </HBox>
+                
+                <!-- Weather Metrics -->
+                <HBox spacing="30" alignment="CENTER_LEFT">
+                    <!-- Wind -->
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="💨" styleClass="metric-icon"/>
+                        <Label text="Wind" styleClass="metric-label"/>
+                        <Label fx:id="windSpeedLabel" text="15 km/h" styleClass="metric-value"/>
+                    </VBox>
+                    
+                    <!-- Waves -->
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="🌊" styleClass="metric-icon"/>
+                        <Label text="Waves" styleClass="metric-label"/>
+                        <Label fx:id="waveHeightLabel" text="1.2m" styleClass="metric-value"/>
+                    </VBox>
+                    
+                    <!-- Visibility -->
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="👁️" styleClass="metric-icon"/>
+                        <Label text="Visibility" styleClass="metric-label"/>
+                        <Label fx:id="visibilityLabel" text="10km" styleClass="metric-value"/>
+                    </VBox>
+                    
+                    <!-- Sea Temp -->
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="🌡️" styleClass="metric-icon"/>
+                        <Label text="Sea Temp" styleClass="metric-label"/>
+                        <Label fx:id="seaTempLabel" text="26°C" styleClass="metric-value"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- Safety Status Card -->
+            <VBox styleClass="safety-status-card" spacing="15">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label fx:id="safetyIconLabel" text="✅" styleClass="safety-icon"/>
+                    <Label text="Safety Status" styleClass="safety-title"/>
+                </HBox>
+                
+                <Label fx:id="safetyStatusLabel" text="Safe for Fishing" styleClass="safety-status"/>
+                
+                <VBox spacing="8">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Wave Conditions" styleClass="safety-metric-label"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="waveConditionStatus" text="Good" styleClass="safety-metric-value good"/>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Wind Speed" styleClass="safety-metric-label"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="windSpeedStatus" text="Safe" styleClass="safety-metric-value safe"/>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Visibility" styleClass="safety-metric-label"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="visibilityStatus" text="Excellent" styleClass="safety-metric-value excellent"/>
+                    </HBox>
+                </VBox>
+                
+                <Label text="Recommendation: Good fishing conditions expected. Best time: 5:00 AM - 10:00 AM" 
+                       styleClass="safety-recommendation" wrapText="true"/>
+            </VBox>
+            
+        </HBox>
+
+        <!-- Bottom Metrics Row -->
+        <HBox spacing="30" alignment="CENTER" styleClass="bottom-metrics-row">
+            
+            <!-- Tide Status -->
+            <VBox alignment="CENTER" spacing="8" styleClass="bottom-metric-card">
+                <Label text="🌊" styleClass="bottom-metric-icon"/>
+                <Label text="Tide Status" styleClass="bottom-metric-title"/>
+                <Label fx:id="tideStatusLabel" text="High" styleClass="bottom-metric-value"/>
+                <Label text="Next: Low tide at 3:45 PM" styleClass="bottom-metric-detail"/>
+            </VBox>
+            
+            <!-- UV Index -->
+            <VBox alignment="CENTER" spacing="8" styleClass="bottom-metric-card">
+                <Label text="☀️" styleClass="bottom-metric-icon"/>
+                <Label text="UV Index" styleClass="bottom-metric-title"/>
+                <Label fx:id="uvIndexLabel" text="7" styleClass="bottom-metric-value"/>
+                <Label text="High - Use protection" styleClass="bottom-metric-detail"/>
+            </VBox>
+            
+            <!-- Humidity -->
+            <VBox alignment="CENTER" spacing="8" styleClass="bottom-metric-card">
+                <Label text="💧" styleClass="bottom-metric-icon"/>
+                <Label text="Humidity" styleClass="bottom-metric-title"/>
+                <Label fx:id="currentHumidityLabel" text="78%" styleClass="bottom-metric-value"/>
+                <Label text="Comfortable" styleClass="bottom-metric-detail"/>
+            </VBox>
+            
+            <!-- Pressure -->
+            <VBox alignment="CENTER" spacing="8" styleClass="bottom-metric-card">
+                <Label text="🌡️" styleClass="bottom-metric-icon"/>
+                <Label text="Pressure" styleClass="bottom-metric-title"/>
+                <Label fx:id="pressureLabel" text="1013" styleClass="bottom-metric-value"/>
+                <Label text="hPa - Stable" styleClass="bottom-metric-detail"/>
+            </VBox>
+            
+        </HBox>
+
+        <!-- Detailed Weather Data Cards -->
+        <ScrollPane fitToWidth="true" fitToHeight="false" prefHeight="200" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER" styleClass="weather-details-scroll">
+            <StackPane alignment="CENTER">
+                <HBox fx:id="cardContainer" spacing="20" styleClass="weather-details-container">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                </HBox>
+            </StackPane>
+        </ScrollPane>
+
+
+        <!-- Line Chart for Wave Heights -->
+        <LineChart fx:id="weatherChart" title="Wave Height Trend">
+            <xAxis>
+                <CategoryAxis fx:id="xAxis" label="Date" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" label="Wave Height (m)" />
+            </yAxis>
+        </LineChart>
+
+        </VBox>
+    </ScrollPane>
+</AnchorPane>
