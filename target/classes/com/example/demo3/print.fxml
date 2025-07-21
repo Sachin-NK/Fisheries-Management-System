@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.example.demo3.PrintController"
+            stylesheets="@style.css">
+
+    <ScrollPane fitToWidth="true" fitToHeight="true"
+                AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" 
+                AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+        
+        <VBox fx:id="printContainer" spacing="20" styleClass="main-content">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Header Section -->
+            <VBox spacing="10" styleClass="header-section">
+                <Label text="📄 PDF Report Generator" styleClass="page-title"/>
+                <Label text="Generate comprehensive PDF reports for fisheries management" styleClass="page-subtitle"/>
+                <Separator/>
+            </VBox>
+
+            <!-- Report Configuration Section -->
+            <VBox spacing="15" styleClass="config-section">
+                <Label text="Report Configuration" styleClass="section-title"/>
+                
+                <!-- Report Type Selection -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Report Type:" styleClass="field-label" minWidth="120"/>
+                    <ComboBox fx:id="reportTypeCombo" prefWidth="300" styleClass="combo-box"/>
+                </HBox>
+                
+                <!-- User Information -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="User Name:" styleClass="field-label" minWidth="120"/>
+                    <TextField fx:id="userNameField" prefWidth="300" promptText="Enter your name" styleClass="text-field"/>
+                </HBox>
+                
+                <!-- Location -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Location:" styleClass="field-label" minWidth="120"/>
+                    <TextField fx:id="locationField" prefWidth="300" promptText="Enter location" styleClass="text-field"/>
+                </HBox>
+                
+                <!-- Output Path -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Output Folder:" styleClass="field-label" minWidth="120"/>
+                    <TextField fx:id="outputPathField" prefWidth="250" promptText="Select output directory" styleClass="text-field"/>
+                    <Button fx:id="browseButton" text="Browse..." styleClass="secondary-button"/>
+                </HBox>
+            </VBox>
+
+            <!-- Report Options Section -->
+            <VBox spacing="15" styleClass="options-section">
+                <Label text="Include in Report" styleClass="section-title"/>
+                
+                <VBox spacing="8">
+                    <CheckBox fx:id="includeWeatherCheck" text="Weather Conditions &amp; Marine Data" styleClass="checkbox"/>
+                    <Label text="   • Current temperature, wave height, wind speed" styleClass="option-description"/>
+                    <Label text="   • Marine safety assessment and recommendations" styleClass="option-description"/>
+                    
+                    <CheckBox fx:id="includeActivitiesCheck" text="Recent System Activities" styleClass="checkbox"/>
+                    <Label text="   • User activity log and system usage history" styleClass="option-description"/>
+                    
+                    <CheckBox fx:id="includeSafetyCheck" text="Safety Guidelines &amp; Recommendations" styleClass="checkbox"/>
+                    <Label text="   • Marine safety protocols and emergency procedures" styleClass="option-description"/>
+                </VBox>
+            </VBox>
+
+            <!-- Report Preview Section -->
+            <VBox spacing="15" styleClass="preview-section">
+                <Label text="Report Preview" styleClass="section-title"/>
+                <TextArea fx:id="reportPreview" prefRowCount="40" prefHeight="600" minHeight="600" editable="false" 
+                         wrapText="true" styleClass="preview-text-area"/>
+            </VBox>
+
+            <!-- Generation Section -->
+            <VBox spacing="15" styleClass="generation-section">
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Button fx:id="generateButton" text="🔄 Generate PDF Report" styleClass="primary-button" prefWidth="200" 
+                            style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-border-radius: 8px; -fx-effect: dropshadow(gaussian, rgba(37, 99, 235, 0.3), 4, 0, 0, 2);"/>
+                    <ProgressBar fx:id="progressBar" prefWidth="200" visible="false"/>
+                </HBox>
+                
+                <Label fx:id="statusLabel" text="Ready to generate PDF reports" styleClass="status-label"/>
+            </VBox>
+
+            <!-- Information Section -->
+            <VBox spacing="10" styleClass="info-section">
+                <Label text="ℹ️ Information" styleClass="section-title"/>
+                <VBox spacing="5">
+                    <Label text="• PDF reports are generated with professional formatting and branding" styleClass="info-text"/>
+                    <Label text="• Reports include current weather data, safety assessments, and recommendations" styleClass="info-text"/>
+                    <Label text="• Generated files are saved in PDF format for easy sharing and printing" styleClass="info-text"/>
+                    <Label text="• All reports include timestamp and user information for record keeping" styleClass="info-text"/>
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+</AnchorPane>
