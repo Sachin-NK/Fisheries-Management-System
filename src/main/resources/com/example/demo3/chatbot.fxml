@@ -8,7 +8,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.demo3.ChatbotController"
       stylesheets="@chatbot.css"
-      prefWidth="800" prefHeight="600">
+      prefWidth="1000" prefHeight="700">
 
     <!-- Left Sidebar -->
     <VBox styleClass="chatbot-sidebar" prefWidth="280" spacing="0">
@@ -31,55 +31,35 @@
         <VBox styleClass="quick-actions" spacing="12">
             <Label text="⚡ Quick Actions" styleClass="section-title"/>
             
-            <VBox styleClass="action-card" spacing="4">
+            <Button styleClass="action-card" onAction="#askWeather">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="🌤️" styleClass="action-icon"/>
-                    <VBox spacing="2">
-                        <Label text="Weather Update" styleClass="action-title"/>
-                        <Label text="Current conditions" styleClass="action-subtitle"/>
-                    </VBox>
+                    <Label text="Weather Update" styleClass="action-text"/>
                 </HBox>
-            </VBox>
+            </Button>
             
-            <VBox styleClass="action-card" spacing="4">
+            <Button styleClass="action-card" onAction="#askFishPrices">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="🐟" styleClass="action-icon"/>
-                    <VBox spacing="2">
-                        <Label text="Fish Prices" styleClass="action-title"/>
-                        <Label text="Today's market rates" styleClass="action-subtitle"/>
-                    </VBox>
+                    <Label text="Fish Prices" styleClass="action-text"/>
                 </HBox>
-            </VBox>
+            </Button>
             
-            <VBox styleClass="action-card" spacing="4">
+            <Button styleClass="action-card" onAction="#askFishingSpots">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="📍" styleClass="action-icon"/>
-                    <VBox spacing="2">
-                        <Label text="Fishing Spots" styleClass="action-title"/>
-                        <Label text="Recommended locations" styleClass="action-subtitle"/>
-                    </VBox>
+                    <Label text="Fishing Spots" styleClass="action-text"/>
                 </HBox>
-            </VBox>
+            </Button>
             
-            <VBox styleClass="action-card" spacing="4">
+            <Button styleClass="action-card">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="⚖️" styleClass="action-icon"/>
-                    <VBox spacing="2">
-                        <Label text="Regulations" styleClass="action-title"/>
-                        <Label text="Current fishing laws" styleClass="action-subtitle"/>
-                    </VBox>
+                    <Label text="Regulations" styleClass="action-text"/>
                 </HBox>
-            </VBox>
+            </Button>
             
-            <VBox styleClass="action-card" spacing="4">
+            <Button styleClass="action-card">
                 <HBox alignment="CENTER_LEFT" spacing="8">
-                    <Label text="🆘" styleClass="action-icon"/>
-                    <VBox spacing="2">
-                        <Label text="Emergency Help" styleClass="action-title"/>
-                        <Label text="Coast guard &amp; safety" styleClass="action-subtitle"/>
-                    </VBox>
+                    <Label text="Emergency Help" styleClass="action-text"/>
                 </HBox>
-            </VBox>
+            </Button>
         </VBox>
         
         <!-- Recent Topics -->
@@ -100,29 +80,18 @@
                 </VBox>
             </HBox>
             <Region HBox.hgrow="ALWAYS"/>
-            <Button text="🗑️" styleClass="header-btn"/>
-            <Button text="⚙️" styleClass="header-btn"/>
         </HBox>
 
-        <!-- Welcome Message -->
-        <VBox styleClass="welcome-message" spacing="16">
+        <!-- Welcome Message - Simplified -->
+        <VBox styleClass="welcome-message" spacing="10">
             <HBox alignment="CENTER_LEFT" spacing="12">
-                <Label text="☁️" styleClass="welcome-icon"/>
+                <Label text="🌊" styleClass="welcome-icon"/>
                 <Label text="Welcome to Smart Fisheries Assistant! 👋" styleClass="welcome-title"/>
             </HBox>
             
-            <Label text="I'm here to help you with:" styleClass="welcome-subtitle"/>
-            
-            <VBox spacing="8">
-                <Label text="• Real-time weather updates and marine conditions" styleClass="welcome-item"/>
-                <Label text="• Current fish prices across Sri Lankan markets" styleClass="welcome-item"/>
-                <Label text="• Best fishing locations and times" styleClass="welcome-item"/>
-                <Label text="• Fishing regulations and safety guidelines" styleClass="welcome-item"/>
-                <Label text="• Species identification and fishing tips" styleClass="welcome-item"/>
-            </VBox>
+            <Label text="I'm here to help you with weather updates, fish prices, fishing spots, regulations, and more." styleClass="welcome-subtitle"/>
             
             <Label text="How can I assist you today?" styleClass="welcome-question"/>
-            <Label text="Just type!" styleClass="welcome-prompt"/>
         </VBox>
 
         <!-- Chat Messages Area -->
@@ -132,21 +101,21 @@
 
         <!-- Input Area -->
         <VBox styleClass="chat-input-area" spacing="12">
-            <HBox styleClass="input-container" spacing="12" alignment="CENTER_LEFT">
-                <HBox alignment="CENTER_LEFT" spacing="12">
-                    <Label text="🤖" styleClass="input-avatar"/>
-                    <TextField fx:id="userInput" promptText="Ask about weather, fish prices, fishing tips, or anything else..." 
-                              styleClass="chat-input" HBox.hgrow="ALWAYS"/>
-                    <Button text="📎" styleClass="attach-btn"/>
-                    <Button text="➤" onAction="#handleUserInput" styleClass="send-btn"/>
-                </HBox>
+            <HBox styleClass="input-container" alignment="CENTER_LEFT">
+                <Label text="🤖" styleClass="input-avatar"/>
+                <TextField fx:id="userInput" promptText="Ask about weather, fish prices, fishing tips, or anything else..." 
+                          styleClass="chat-input" HBox.hgrow="ALWAYS"/>
+                <Button text="➤" onAction="#handleUserInput" styleClass="send-btn"/>
             </HBox>
             
             <!-- Quick Suggestions -->
             <HBox spacing="8" alignment="CENTER_LEFT">
-                <Button text="Weather for fishing?" styleClass="suggestion-btn"/>
-                <Button text="Current fish prices" styleClass="suggestion-btn"/>
-                <Button text="Best fishing spots" styleClass="suggestion-btn"/>
+                <Button text="Weather for fishing?" onAction="#askWeather"
+                        styleClass="suggestion-btn"/>
+                <Button text="Current fish prices" onAction="#askFishPrices"
+                        styleClass="suggestion-btn"/>
+                <Button text="Best fishing spots" onAction="#askFishingSpots"
+                        styleClass="suggestion-btn"/>
             </HBox>
         </VBox>
     </VBox>

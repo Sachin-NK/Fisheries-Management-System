@@ -8,7 +8,7 @@
          xmlns="http://javafx.com/javafx/17" 
          xmlns:fx="http://javafx.com/fxml"
          styleClass="fisheries-chat-container"
-         stylesheets="@chat-window.css">
+         stylesheets="@chatbot.css">
 
     <!-- Left Sidebar -->
     <VBox fx:id="leftSidebar" styleClass="chat-sidebar" prefWidth="280">
@@ -22,14 +22,18 @@
             <HBox alignment="CENTER_LEFT" spacing="12">
                 <Label text="🐟" styleClass="fisheries-icon"/>
                 <VBox spacing="2">
-                    <Label text="Fisheries Assistant" styleClass="assistant-title"/>
-                    <Label text="Smart AI Helper" styleClass="assistant-subtitle"/>
+                    <Label text="Fisheries Assistant" styleClass="assistant-title" 
+                           style="-fx-text-fill: white !important; -fx-font-size: 18px !important; -fx-font-weight: bold !important; -fx-font-family: 'Arial', 'Helvetica', sans-serif !important;"/>
+                    <Label text="Smart AI Helper" styleClass="assistant-subtitle"
+                           style="-fx-text-fill: rgba(255, 255, 255, 0.8) !important; -fx-font-size: 14px !important; -fx-font-family: 'Arial', 'Helvetica', sans-serif !important;"/>
                 </VBox>
             </HBox>
             
             <HBox alignment="CENTER_LEFT" spacing="8">
-                <Label text="●" styleClass="online-indicator"/>
-                <Label text="Online & Ready to Help" styleClass="status-text"/>
+                <Label text="●" styleClass="online-indicator" 
+                       style="-fx-text-fill: #10b981 !important; -fx-font-size: 12px !important;"/>
+                <Label text="Online & Ready to Help" styleClass="status-text"
+                       style="-fx-text-fill: rgba(255, 255, 255, 0.9) !important; -fx-font-size: 13px !important; -fx-font-family: 'Arial', 'Helvetica', sans-serif !important;"/>
             </HBox>
         </VBox>
         
@@ -62,7 +66,8 @@
     </VBox>
 
     <!-- Right Chat Area -->
-    <VBox fx:id="chatWindowContainer" styleClass="chat-main-area" HBox.hgrow="ALWAYS">
+    <VBox fx:id="chatWindowContainer" styleClass="chat-main-area" HBox.hgrow="ALWAYS" 
+          style="-fx-background-color: white;">
         
         <!-- Chat Header -->
         <HBox fx:id="headerBar" styleClass="chat-header" alignment="CENTER_LEFT" spacing="15">
@@ -78,17 +83,18 @@
             
             <Region HBox.hgrow="ALWAYS"/>
             
-            <Button fx:id="settingsButton" text="⚙️" styleClass="header-icon-btn"/>
             <Button fx:id="closeButton" text="✕" styleClass="chat-close-btn" onAction="#slideDown"/>
         </HBox>
         
         <!-- Welcome Message Area -->
-        <VBox fx:id="welcomeArea" styleClass="welcome-area" spacing="15">
+        <VBox fx:id="welcomeArea" styleClass="welcome-area" spacing="15" 
+              style="-fx-background-color: white;">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
             
-            <VBox styleClass="welcome-message-card" spacing="12">
+            <VBox styleClass="welcome-message-card" spacing="12" 
+                  style="-fx-background-color: #3b82f6;">
                 <padding>
                     <Insets top="20" right="20" bottom="20" left="20"/>
                 </padding>
@@ -129,14 +135,16 @@
         <ScrollPane fx:id="chatScrollPane" 
                     styleClass="chat-scroll"
                     fitToWidth="true"
-                    VBox.vgrow="ALWAYS">
+                    VBox.vgrow="ALWAYS"
+                    style="-fx-background-color: white;">
             <padding>
                 <Insets top="10" right="20" bottom="10" left="20"/>
             </padding>
             
             <VBox fx:id="messageContainer" 
                   styleClass="chat-messages" 
-                  spacing="15">
+                  spacing="15"
+                  style="-fx-background-color: white;">
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10"/>
                 </padding>
@@ -144,35 +152,42 @@
         </ScrollPane>
         
         <!-- Quick Suggestions -->
-        <HBox fx:id="quickSuggestions" styleClass="quick-suggestions" spacing="10" alignment="CENTER_LEFT">
+        <HBox fx:id="quickSuggestions" styleClass="quick-suggestions" spacing="10" alignment="CENTER_LEFT"
+              style="-fx-background-color: white;">
             <padding>
                 <Insets top="10" right="20" bottom="10" left="20"/>
             </padding>
             
-            <Button text="Weather for fishing?" styleClass="suggestion-btn" onAction="#askWeatherSuggestion"/>
-            <Button text="Current fish prices" styleClass="suggestion-btn" onAction="#askPricesSuggestion"/>
-            <Button text="Best fishing spots" styleClass="suggestion-btn" onAction="#askSpotsSuggestion"/>
+            <Button text="Weather for fishing?" onAction="#askWeatherSuggestion"
+                    style="-fx-background-color: #ffffff !important; -fx-text-fill: #000000 !important; -fx-border-color: #3b82f6 !important; -fx-border-width: 2px !important; -fx-font-weight: bold !important; -fx-background-radius: 8px !important; -fx-border-radius: 8px !important; -fx-padding: 12px 20px !important; -fx-font-size: 14px !important; -fx-font-family: 'Arial', 'Helvetica', sans-serif !important;"/>
+            <Button text="Current fish prices" onAction="#askPricesSuggestion"
+                    style="-fx-background-color: #ffffff !important; -fx-text-fill: #000000 !important; -fx-border-color: #3b82f6 !important; -fx-border-width: 2px !important; -fx-font-weight: bold !important; -fx-background-radius: 8px !important; -fx-border-radius: 8px !important; -fx-padding: 12px 20px !important; -fx-font-size: 14px !important; -fx-font-family: 'Arial', 'Helvetica', sans-serif !important;"/>
+            <Button text="Best fishing spots" onAction="#askSpotsSuggestion"
+                    style="-fx-background-color: #ffffff !important; -fx-text-fill: #000000 !important; -fx-border-color: #3b82f6 !important; -fx-border-width: 2px !important; -fx-font-weight: bold !important; -fx-background-radius: 8px !important; -fx-border-radius: 8px !important; -fx-padding: 12px 20px !important; -fx-font-size: 14px !important; -fx-font-family: 'Arial', 'Helvetica', sans-serif !important;"/>
         </HBox>
         
         <!-- Input Area -->
         <HBox fx:id="inputContainer" 
               styleClass="chat-input-container" 
               alignment="CENTER_LEFT" 
-              spacing="15">
+              spacing="15"
+              style="-fx-background-color: white;">
             <padding>
                 <Insets top="16" right="20" bottom="20" left="20"/>
             </padding>
             
-            <Label text="🤖" styleClass="input-bot-icon"/>
+            <Label text="🤖" styleClass="input-bot-icon"
+                   style="-fx-background-color: #3b82f6; -fx-text-fill: white;"/>
             
             <TextField fx:id="messageInput" 
                        styleClass="chat-input"
                        promptText="Ask about weather, fish prices, fishing tips, or anything else..."
                        HBox.hgrow="ALWAYS"
-                       onAction="#sendMessage"/>
+                       onAction="#sendMessage"
+                       style="-fx-background-color: #f8fafc; -fx-text-fill: #1f2937; -fx-prompt-text-fill: #6b7280;"/>
             
-            <Button fx:id="attachButton" text="📎" styleClass="attach-btn"/>
-            <Button fx:id="sendButton" text="➤" styleClass="chat-send-btn" onAction="#sendMessage"/>
+            <Button fx:id="sendButton" text="➤" styleClass="chat-send-btn" onAction="#sendMessage"
+                    style="-fx-background-color: #10b981; -fx-text-fill: white;"/>
         </HBox>
         
     </VBox>

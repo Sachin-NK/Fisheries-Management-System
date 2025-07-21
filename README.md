@@ -26,7 +26,7 @@ A modern JavaFX desktop application designed for fisheries management in Sri Lan
 
 ### 💬 Community Features
 - **Real-time Chat** - Community discussion platform for fishermen
-- **Floating Chatbot** - AI-powered assistance accessible from any page
+- **Chatbot** - AI-powered assistance for fishing information
 - **User Avatars** - Personalized user profiles with color-coded avatars
 - **Message History** - Persistent chat history with timestamps
 
@@ -148,7 +148,6 @@ JavaFx_Desktop_Application-main/
 │       │   ├── MainController.java            # Main window controller
 │       │   ├── WeatherController.java         # Weather page logic
 │       │   ├── CommunityController.java       # Chat functionality
-│       │   ├── FloatingChatbotIcon.java       # Floating chatbot
 │       │   ├── ChatWindow.java                # Chat window management
 │       │   ├── TransitionManager.java         # UI animations
 │       │   └── Message.java                   # Message data model
@@ -156,15 +155,11 @@ JavaFx_Desktop_Application-main/
 │           ├── main.fxml                      # Main layout
 │           ├── weathepage.fxml               # Weather page layout
 │           ├── community.fxml                # Chat interface
-│           ├── floating-chatbot.fxml         # Chatbot icon
+│           ├── chatbot.fxml                  # Chatbot interface
 │           ├── chat-window.fxml              # Chat window
 │           ├── style.css                     # Main stylesheet
-│           ├── wheather.css                  # Weather page styles
-│           ├── floating-chatbot.css          # Chatbot styles
-│           └── chat-window.css               # Chat window styles
-├── .kiro/
-│   └── specs/ui-enhancement/                 # UI enhancement specifications
-├── pom.xml                                   # Maven configuration
+│           ├── weather.css                   # Weather page styles
+│           └── chat-window.css               # Chat window styles                                   # Maven configuration
 └── README.md                                 # This file
 ```
 
@@ -267,37 +262,5 @@ We welcome contributions to improve the Smart Fisheries Management System!
 - Add comments for complex logic
 - Test your changes thoroughly
 - Update documentation as needed
-
-### Areas for Contribution
-
-- 🌐 **Internationalization** - Multi-language support
-- 📱 **Mobile Responsiveness** - Better mobile layouts
-- 🔒 **Security** - Enhanced authentication and authorization
-- 📊 **Analytics** - Advanced data visualization
-- 🤖 **AI Features** - Enhanced chatbot capabilities
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Open-Meteo** - For providing free weather API services
-- **JavaFX Community** - For excellent documentation and support
-- **Sri Lankan Fishing Community** - For inspiration and requirements
-- **Contributors** - Everyone who has contributed to this project
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-1. **Check the Issues** - Look for existing solutions
-2. **Create an Issue** - Report bugs or request features
-3. **Join Discussions** - Participate in community discussions
-4. **Contact Maintainers** - Reach out for direct support
-
----
-
-**Made with ❤️ for the Sri Lankan fishing community**
 
 *This application aims to improve fishing safety and community collaboration through modern technology.*

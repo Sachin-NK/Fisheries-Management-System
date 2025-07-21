@@ -45,7 +45,6 @@ public class ChatWindow extends VBox implements Initializable {
     @FXML
     private Button sendButton;
     
-    private FloatingChatbotIcon floatingChatbotIcon;
     private ChatbotController chatbotController;
     private boolean isVisible = false;
     
@@ -265,9 +264,7 @@ public class ChatWindow extends VBox implements Initializable {
         animation.play();
     }
     
-    public void setFloatingChatbotIcon(FloatingChatbotIcon floatingChatbotIcon) {
-        this.floatingChatbotIcon = floatingChatbotIcon;
-    }
+    // Removed floating chatbot icon reference
     
     public boolean isChatVisible() {
         return isVisible;

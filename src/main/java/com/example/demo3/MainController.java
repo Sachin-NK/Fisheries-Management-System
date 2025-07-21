@@ -29,9 +29,6 @@ public class MainController {
     @FXML
     private AnchorPane rootContainer;
     
-    private FloatingChatbotIcon floatingChatbotIcon;
-    private ChatWindow currentChatWindow;
-    
     // Navigation buttons for active state management
     @FXML private Button homeBtn;
     @FXML private Button weatherBtn;
@@ -42,26 +39,6 @@ public class MainController {
 
     public void initialize() {
         openHome();
-        // initializeFloatingChatbot(); // Removed floating chatbot
-    }
-    
-    private void initializeFloatingChatbot() {
-        // Create floating chatbot icon
-        floatingChatbotIcon = new FloatingChatbotIcon();
-        floatingChatbotIcon.setMainController(this);
-        
-        // Position the floating chatbot in bottom-RIGHT corner (away from navigation)
-        if (rootContainer != null) {
-            AnchorPane.setBottomAnchor(floatingChatbotIcon, 24.0);
-            AnchorPane.setRightAnchor(floatingChatbotIcon, 24.0);
-            rootContainer.getChildren().add(floatingChatbotIcon);
-        } else {
-            // Fallback: add to main content if rootContainer is not available
-            StackPane.setAlignment(floatingChatbotIcon, Pos.BOTTOM_RIGHT);
-            floatingChatbotIcon.setTranslateX(-24);
-            floatingChatbotIcon.setTranslateY(-24);
-            mainContent.getChildren().add(floatingChatbotIcon);
-        }
     }
 
     @FXML
@@ -127,17 +104,7 @@ public class MainController {
     @FXML
     private void openPrint() {
         setActiveButton(printBtn);
-        
-        // For now, show a simple print dialog or placeholder
-        // You can later implement actual printing functionality
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Print Function");
-        alert.setHeaderText("Print Feature");
-        alert.setContentText("Print functionality will be implemented here.\nThis could include:\n- Printing reports\n- Printing user data\n- Printing charts and analytics");
-        alert.showAndWait();
-        
-        // Uncomment below if you create a print.fxml file
-        // loadPage("/com/example/demo3/print.fxml");
+        loadPage("/com/example/demo3/print.fxml");
     }
     
     /**
@@ -198,77 +165,5 @@ public class MainController {
         System.out.println("Logged in user: " + username);
     }
     
-    /**
-     * Show the floating chat window
-     */
-    public void showFloatingChatWindow(ChatWindow chatWindow) {
-        currentChatWindow = chatWindow;
-        
-        if (rootContainer != null) {
-            // Position chat window in bottom-RIGHT, above the floating icon
-            AnchorPane.setBottomAnchor(chatWindow, 90.0); // Above the 56px icon + 24px margin + 10px gap
-            AnchorPane.setRightAnchor(chatWindow, 24.0);
-            rootContainer.getChildren().add(chatWindow);
-        } else {
-            // Fallback: add to main content
-            StackPane.setAlignment(chatWindow, Pos.BOTTOM_RIGHT);
-            chatWindow.setTranslateX(-24);
-            chatWindow.setTranslateY(-90);
-            mainContent.getChildren().add(chatWindow);
-        }
-        
-        // Set up click-outside-to-close functionality
-        setupClickOutsideHandler(chatWindow);
-    }
-    
-    /**
-     * Hide the floating chat window
-     */
-    public void hideFloatingChatWindow() {
-        if (currentChatWindow != null) {
-            if (rootContainer != null) {
-                rootContainer.getChildren().remove(currentChatWindow);
-            } else {
-                mainContent.getChildren().remove(currentChatWindow);
-            }
-            currentChatWindow = null;
-        }
-    }
-    
-    /**
-     * Setup click outside handler to close chat window
-     */
-    private void setupClickOutsideHandler(ChatWindow chatWindow) {
-        // Add mouse click handler to root container
-        if (rootContainer != null) {
-            rootContainer.setOnMouseClicked(event -> {
-                // Check if click was outside the chat window and floating icon
-                if (!chatWindow.getBoundsInParent().contains(event.getX(), event.getY()) &&
-                    !floatingChatbotIcon.getBoundsInParent().contains(event.getX(), event.getY())) {
-                    floatingChatbotIcon.handleClickOutside();
-                }
-            });
-        } else {
-            mainContent.setOnMouseClicked(event -> {
-                if (!chatWindow.getBoundsInParent().contains(event.getX(), event.getY()) &&
-                    !floatingChatbotIcon.getBoundsInParent().contains(event.getX(), event.getY())) {
-                    floatingChatbotIcon.handleClickOutside();
-                }
-            });
-        }
-    }
-    
-    /**
-     * Get the floating chatbot icon (for external access if needed)
-     */
-    public FloatingChatbotIcon getFloatingChatbotIcon() {
-        return floatingChatbotIcon;
-    }
-    
-    /**
-     * Check if chat window is currently visible
-     */
-    public boolean isChatWindowVisible() {
-        return currentChatWindow != null && currentChatWindow.isChatVisible();
-    }
+    // Removed floating chatbot related methods
 }

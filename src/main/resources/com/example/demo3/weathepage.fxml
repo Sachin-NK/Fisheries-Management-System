@@ -7,7 +7,7 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.demo3.WeatherController"
-            stylesheets="@wheather.css">
+            stylesheets="@weather.css">
 
     <ScrollPane fitToWidth="true" fitToHeight="false" 
                 hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
@@ -62,6 +62,18 @@
             </VBox>
         </VBox>
 
+        <!-- Line Chart for Wave Heights -->
+        <VBox styleClass="chart-container">
+            <LineChart fx:id="weatherChart" title="Wave Height Trend">
+                <xAxis>
+                    <CategoryAxis fx:id="xAxis" label="Date" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="yAxis" label="Wave Height (m)" />
+                </yAxis>
+            </LineChart>
+        </VBox>
+
         <!-- Current Weather and Safety Section -->
         <HBox spacing="20" alignment="TOP_LEFT">
             
@@ -80,7 +92,7 @@
                 </HBox>
                 
                 <!-- Weather Metrics -->
-                <HBox spacing="30" alignment="CENTER_LEFT">
+                <HBox spacing="40" alignment="CENTER_LEFT">
                     <!-- Wind -->
                     <VBox alignment="CENTER" spacing="5">
                         <Label text="💨" styleClass="metric-icon"/>
@@ -191,17 +203,6 @@
                 </HBox>
             </StackPane>
         </ScrollPane>
-
-
-        <!-- Line Chart for Wave Heights -->
-        <LineChart fx:id="weatherChart" title="Wave Height Trend">
-            <xAxis>
-                <CategoryAxis fx:id="xAxis" label="Date" />
-            </xAxis>
-            <yAxis>
-                <NumberAxis fx:id="yAxis" label="Wave Height (m)" />
-            </yAxis>
-        </LineChart>
 
         </VBox>
     </ScrollPane>
